@@ -1,0 +1,27 @@
+name: heartenv
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - numpy
+  - scipy
+  - pandas
+  - scikit-image
+  - matplotlib
+  - pydicom
+  - simpleitk
+  - nibabel
+  - tqdm
+  - opencv
+  - pytorch
+  - torchvision
+  - cpuonly    # usar cpuonly para compatibilidade; para GPU remova esta linha e instale o pytorch/cuda adequado
+  - pip:
+    - monai
+    - wandb
+    - opencv-python
+    - nibabel
+    - pytest
