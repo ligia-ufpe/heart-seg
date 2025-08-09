@@ -32,9 +32,9 @@ Para rodar os testes automatizados:
 pytest tests/
 ```
 
-## Estrutura Recomendada
+## Estrutura
 - `src/`: código principal
-- `tests/`: testes automatizados
+- `tests/`: testes para ver se a conversão deu certo
 - `data/`: dados DICOM e convertidos
 - `environment.yml`: dependências do projeto
 
@@ -45,5 +45,4 @@ Principais bibliotecas: SimpleITK, pydicom, numpy, matplotlib, nibabel, pytorch,
 - Se algum pacote não for encontrado via conda, instale via pip.
 - Para desenvolvimento/testes, recomenda-se instalar também `pytest` e garantir que `pip` está atualizado no ambiente.
 
----
-Atualize este README conforme novas funcionalidades forem adicionadas.
+
