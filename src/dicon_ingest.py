@@ -2,8 +2,7 @@
 dicom_ingest.py
 
 Script para:
- - Ler uma série DICOM (pasta com DICOMs)
- - (Opcional) anonimizar os arquivos DICOM em saída
+ - Ler uma série DICOM (pasta com DICOMs
  - Converter a série para NIfTI (.nii.gz)
 
 Uso exemplo:
@@ -44,33 +43,6 @@ def read_dicom_series(folder_path: Path) -> Tuple[sitk.Image, List[str]]:
     image = reader.Execute()
     return image, list(series_files)
 
-
-def anonymize_and_copy(src_folder: Path, dst_folder: Path, overwrite: bool = False) -> None:
-    """
-    Copia e anonimiza arquivos DICOM de uma pasta para outra.
-    Args:
-        src_folder (Path): Pasta de origem.
-        dst_folder (Path): Pasta de destino.
-        overwrite (bool): Sobrescrever arquivos existentes.
-    """
-    dst_folder.mkdir(parents=True, exist_ok=True)
-    for f in sorted(src_folder.iterdir()):
-        if not f.is_file():
-            continue
-        try:
-            ds = pydicom.dcmread(str(f))
-            # remove tags identificáveis simples
-            for tag in ["PatientName", "PatientID", "PatientBirthDate", "PatientAddress", "InstitutionName"]:
-                if tag in ds:
-                    ds.data_element(tag).value = "ANON"
-            ds.remove_private_tags()
-            out_path = dst_folder / f.name
-            if out_path.exists() and not overwrite:
-                logger.info(f"Pulando (já existe): {out_path}")
-                continue
-            ds.save_as(str(out_path))
-        except Exception as e:
-            logger.warning(f"Falha ao anonimizar/copiar {f}: {e}")
 
 
 def write_nifti_from_series(image: sitk.Image, out_path: Path) -> None:
