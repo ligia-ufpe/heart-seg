@@ -6,7 +6,7 @@ Script para:
  - Converter a série para NIfTI (.nii.gz)
 
 Uso exemplo:
-    python src/dicon_ingest.py --input /path/to/dicom_folder --output /workspace/data/converted --anonymize
+    python src/dicon_ingest.py --input /path/to/dicom_folder --output /workspace/data/converted 
 """
 
 import argparse
@@ -63,7 +63,6 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description='Ingestão DICOM -> NIfTI')
     parser.add_argument('--input', '-i', required=True, help='Pasta contendo arquivos DICOM (uma série)')
     parser.add_argument('--output', '-o', required=True, help='Pasta de saída para NIfTI (arquivo .nii.gz será criado ou pasta de saída)')
-    parser.add_argument('--anonymize', action='store_true', help='Se setado, copia e anonimiza os DICOMs para uma pasta _anon antes de converter')
     parser.add_argument('--overwrite', action='store_true', help='Sobrescrever arquivos existentes')
     parser.add_argument('--loglevel', default='INFO', help='Nível de logging (DEBUG, INFO, WARNING, ERROR)')
     parser.add_argument('--output-name', default=None, help='Nome do arquivo de saída (opcional, padrão: nome da pasta de entrada)')
@@ -72,7 +71,6 @@ def parse_args() -> argparse.Namespace:
 def process_dicom_to_nifti(
     input_path: Path,
     output_path: Path,
-    anonymize: bool = False,
     overwrite: bool = False,
     output_name: Optional[str] = None
 ) -> Path:
@@ -80,8 +78,7 @@ def process_dicom_to_nifti(
     Processa uma série DICOM e salva como NIfTI.
     Args:
         input_path (Path): Pasta de entrada com DICOMs.
-        output_path (Path): Pasta ou arquivo de saída.
-        anonymize (bool): Se True, anonimiza antes de converter.
+        output_path (Path): Pasta ou arquivo de saída
         overwrite (bool): Se True, sobrescreve arquivos existentes.
         output_name (str, opcional): Nome do arquivo de saída.
     Returns:
@@ -92,11 +89,6 @@ def process_dicom_to_nifti(
         raise FileNotFoundError(f"Pasta de entrada não existe: {input_path}")
 
     work_input = input_path
-    if anonymize:
-        anon_folder = input_path.parent / (input_path.name + "_anon")
-        logger.info(f"Anonymizing DICOMs -> {anon_folder}")
-        anonymize_and_copy(input_path, anon_folder, overwrite=overwrite)
-        work_input = anon_folder
 
     image, _ = read_dicom_series(work_input)
 
@@ -120,7 +112,7 @@ def main():
         process_dicom_to_nifti(
             input_path=Path(args.input),
             output_path=Path(args.output),
-            anonymize=args.anonymize,
+
             overwrite=args.overwrite,
             output_name=args.output_name
         )

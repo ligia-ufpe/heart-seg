@@ -18,12 +18,35 @@
 
 ## Preparando os dados
 
-Para prepara os dados, deve-se primeiro transformar os dados DICON em .nii.gz para tratar no MONAI
+Para preparar os dados, deve-se primeiro transformar os dados DICOM em .nii.gz para tratar no MONAI:
 
-'''sh
-python src/dicon_ingest.py -i path_to_data -o data/processed
-'''
+```sh
+python src/dicon_ingest.py -i data/Cardio_Prj1802_Cardio_Onco/CINE_EC_12 -o data/processed
+```
 
+## Segmentação Manual (Infraestrutura para Anotação)
+
+### Workflow Completo
+```sh
+# Workflow completo automatizado
+python scripts/run_segmentation_workflow.py full --data-dir data/processed
+
+# Ou executar passos individuais:
+
+# 1. Preparar dados para segmentação
+python scripts/run_segmentation_workflow.py prepare --data-dir data/processed
+
+# 2. Ver instruções do 3D Slicer
+python scripts/run_segmentation_workflow.py instructions
+
+# 3. Validar segmentações após anotar
+python scripts/run_segmentation_workflow.py validate --annotation-dir annotations
+```
+
+### Manual do 3D Slicer
+- **Guia completo**: `docs/manual_segmentation_guide.md`
+- **Script automatizado**: `annotations/slicer_annotation_script.py`
+- **Tipos de gordura**: Epicardial, Pericardial, Myocardial
 
 ## Rodando os Testes
 
