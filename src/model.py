@@ -9,8 +9,8 @@ from monai.data import Dataset, DataLoader
 from monai.networks.nets import UNet
 
 # Diretórios e padrões
-IMAGE_DIR = 'data/processed'
-LABEL_DIR = 'data/segmented'
+IMAGE_DIR = 'seg_data/processed'
+LABEL_DIR = 'seg_data/segmented'
 IMAGE_PATTERN = 'CINE_EC_*.nii.gz'
 LABEL_SUFFIX = '_SEG.nii'
 
