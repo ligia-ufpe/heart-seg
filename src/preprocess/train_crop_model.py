@@ -86,11 +86,7 @@ if __name__ == "__main__":
     # Example usage
     script_dir = os.path.dirname(os.path.abspath(__file__))  # Get the directory of the current script
     image_directory = os.path.join(script_dir, "../../data/processed")  # Ensure absolute path to data/processed
-    bounding_box_labels = [  # Replace with actual bounding box data
-        [10, 10, 10, 50, 50, 50],
-        [15, 15, 15, 55, 55, 55],
-        # Add more bounding box labels corresponding to your images
-    ]
+    bounding_box_labels = os.path.join(script_dir, "../../data/bbox")  # Ensure absolute path to bbox_labels
     model_output_path = os.path.join(script_dir, "../../models/crop_model.pth")  # Ensure absolute path to models
 
     train_model(image_directory, bounding_box_labels, model_output_path)
