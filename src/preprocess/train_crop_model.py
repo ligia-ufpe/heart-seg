@@ -84,9 +84,9 @@ def train_model(image_dir, bbox_labels, model_save_path, epochs=10, batch_size=4
 
 if __name__ == "__main__":
     # Example usage
-    script_dir = os.path.dirname(os.path.abspath(__file__))  # Get the directory of the current script
-    image_directory = os.path.join(script_dir, "../../data/processed")  # Ensure absolute path to data/processed
-    bounding_box_labels = os.path.join(script_dir, "../../data/bbox")  # Ensure absolute path to bbox_labels
-    model_output_path = os.path.join(script_dir, "../../models/crop_model.pth")  # Ensure absolute path to models
+    script_dir = os.path.dirname(os.path.abspath(__file__))  
+    image_directory = os.path.join(script_dir, "../../data/processed") 
+    bounding_box_labels = os.path.join(script_dir, "../../data/bbox") 
+    model_output_path = os.path.join(script_dir, "../../models/crop_model.pth") 
 
     train_model(image_directory, bounding_box_labels, model_output_path)
