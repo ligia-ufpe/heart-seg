@@ -7,10 +7,17 @@ from monai.transforms import (
 )
 from monai.data import Dataset, DataLoader
 from monai.networks.nets import UNet
+from utils import visualize_sample, save_pred_label
+
+# Configurações iniciais
+SAVE_OUTPUTS_N_EPOCHS = 5 # Salvar saídas a cada n épocas
+observed_data = None # Tensor para armazenar as imagens e rótulos observados ao longo do treinamento
+SHOW_SAMPLE = True # Mostrar uma amostra do dataset
 
 # Diretórios e padrões
-IMAGE_DIR = 'seg_data/processed'
-LABEL_DIR = 'seg_data/segmented'
+IMAGE_DIR = 'data/processed'
+LABEL_DIR = 'data/segmented'
+OUTPUT_DIR = 'intermediate_outputs'
 IMAGE_PATTERN = 'CINE_EC_*.nii.gz'
 LABEL_SUFFIX = '_SEG.nii'
 
@@ -38,11 +45,20 @@ transforms = Compose([
 train_ds = Dataset(data=data_dicts, transform=transforms)
 train_loader = DataLoader(train_ds, batch_size=2, shuffle=True)
 
+# Visualização de exemplo
+batch = next(iter(train_loader))
+
+if SHOW_SAMPLE:
+    visualize_sample(batch['image'], batch['label'], slice=6)
+
+# Configurar imagens a serem observadas
+observed_data = batch
+
 # Definir modelo UNet
 model = UNet(
     spatial_dims=3,
     in_channels=1,
-    out_channels=2,
+    out_channels=3, # Ajuste conforme o número de classes
     channels=(16, 32, 64, 128, 256),
     strides=(2, 2, 2, 2),
     num_res_units=2,
@@ -50,6 +66,7 @@ model = UNet(
 
 # Dispositivo: GPU se disponível
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+print(f'Usando dispositivo: {device}')
 model = model.to(device)
 
 # Otimizador e função de perda
@@ -64,13 +81,23 @@ for epoch in range(n):  # ajuste epochs conforme necessário
         images = batch['image'].to(device)
         labels = batch['label'].to(device)
         outputs = model(images)
+
         if labels.shape[1] == 1:
             labels = labels.squeeze(1)
+
         loss = loss_function(outputs, labels.long())
+
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
+
         print(f'Epoch {epoch}, Loss: {loss.item()}')
+    
+    if SAVE_OUTPUTS_N_EPOCHS and epoch % SAVE_OUTPUTS_N_EPOCHS == 0:
+        images = observed_data['image'].to(device)
+        labels = observed_data['label'].to(device)
+        outputs = model(images)
+        save_pred_label(outputs, labels, OUTPUT_DIR, slice=6, epoch=epoch)
 
 # Salvar modelo
 torch.save(model.state_dict(), 'unet_heart_seg.pth')
