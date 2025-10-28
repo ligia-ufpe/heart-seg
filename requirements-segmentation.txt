@@ -1,1 +1,3 @@
 pip install "monai[nibabel, itk, pillow]"
+pip install SimpleITK
+pip install pydicom

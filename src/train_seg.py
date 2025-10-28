@@ -100,14 +100,8 @@ for epoch in range(n):  # ajuste epochs conforme necessário
         save_pred_label(outputs, labels, OUTPUT_DIR, slice=6, epoch=epoch)
 
 # Salvar modelo
-torch.save(model.state_dict(), 'unet_heart_seg.pth')
+model_path = 'src/models'
+
+torch.save(model.state_dict(), model_path + '/unet_heart_seg.pth')
 print('Modelo salvo')
 
-# Função para extrair bounding box da máscara segmentada
-def get_bounding_box(mask):
-    coords = np.argwhere(mask == 1)
-    if coords.size == 0:
-        return None, None
-    min_coords = coords.min(axis=0)
-    max_coords = coords.max(axis=0)
-    return min_coords, max_coords

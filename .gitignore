@@ -1,6 +1,7 @@
 /venv
 .venv/
 data/test_dataset_rgb/
+/data
 __pycache__/
 intermediate_outputs/
 *.pth
