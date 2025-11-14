@@ -1,5 +1,5 @@
 """
-dicom_ingest.py
+convert.py
 
 Script para:
  - Ler uma série DICOM (pasta com DICOMs
