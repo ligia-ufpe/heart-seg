@@ -1,28 +1,34 @@
-# Dockerfile para ambiente de desenvolvimento (Conda)
-FROM continuumio/miniconda3:latest
+# Dockerfile for Heart Segmentation project
+# Based on install.md instructions
 
-LABEL maintainer="Equipe RoboCIn <contato@robocin.example>"
+FROM python:3.9-slim
 
+# Set working directory
 WORKDIR /workspace
 
-# Copia environment para criar o ambiente conda
-COPY environment.yml /workspace/environment.yml
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    && rm -rf /var/lib/apt/lists/*
 
-# Cria o ambiente conda (nome: heartenv)
-RUN conda env create -f /workspace/environment.yml -n heartenv && \
-    conda clean -afy
+# Copy requirements file
+COPY requirements-segmentation.txt /workspace/
 
-# Use o shell do conda para futuros RUNs
-SHELL ["conda", "run", "-n", "heartenv", "/bin/bash", "-lc"]
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements-segmentation.txt
 
-# Copia o código fonte (assuma que haverá uma pasta src/ no mesmo nível do Dockerfile)
+# Install additional testing dependencies
+RUN pip install --no-cache-dir pytest
+
+# Copy source code
 COPY src/ /workspace/src/
+COPY tests/ /workspace/tests/
 
-# Cria pastas de trabalho
+# Create necessary directories
 RUN mkdir -p /workspace/data /workspace/annotations /workspace/models /workspace/logs
 
-# Porta (se for expor algum serviço web depois)
-EXPOSE 5000
+# Set Python path
+ENV PYTHONPATH=/workspace
 
-# Entrada padrão: roda o script de ingestão (pode ser sobrescrito ao iniciar o container)
-ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "heartenv", "python", "src/dicom_ingest.py"]
+# Default command
+CMD ["python", "src/convert.py", "--help"]

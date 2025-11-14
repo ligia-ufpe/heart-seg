@@ -85,7 +85,7 @@ def benchmark_sam2(point_coords: np.ndarray,
         label = cv2.imread(label_path, cv2.IMREAD_GRAYSCALE)
 
         if image is None:
-            print(f"Imagem de teste não encontrada em: {img_path}")
+            print(f"Imagem de testeo não encontrada em: {img_path}")
             print(f"Pulando")
             continue
 
