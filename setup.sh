@@ -19,7 +19,7 @@ fi
 
 # Install dependencies from requirements file
 echo "Installing Python dependencies..."
-pip3 install -r requirements-segmentation.txt
+pip3 install -r requirements.txt
 
 # Optional: Install pytest for testing
 echo "Installing pytest for testing..."
