@@ -1,0 +1,43 @@
+[project]
+name = "heart-fat"
+version = "0.1.0"
+description = "Epicardial fat segmentation benchmark: MONAI SegResNet vs SAM3 + Conformal Prediction"
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.7.0",
+    "torchvision>=0.22.0",
+    "monai[all]>=1.4.0",
+    "numpy>=1.26.0",
+    "pillow>=10.0.0",
+    "matplotlib>=3.8.0",
+    "scikit-learn>=1.4.0",
+    "scipy>=1.12.0",
+    "pandas>=2.2.0",
+    "tqdm>=4.66.0",
+    "pydicom>=2.4.0",
+    "SimpleITK>=2.3.0",
+    "seaborn>=0.13.0",
+    "opencv-python>=4.9.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29.0",
+    "jupyter>=1.0.0",
+    "ipywidgets>=8.1.0",
+]
+
+[tool.uv]
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cu128" },
+]
+torchvision = [
+    { index = "pytorch-cu128" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
