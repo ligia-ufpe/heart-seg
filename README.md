@@ -22,12 +22,6 @@ Pipeline completo:
 
 ---
 
-## Ambiente
-
-- **Gestor de pacotes:** `uv` — sempre usar `uv run python ...`
-- PyTorch 2.10.0+cu128, MONAI 1.5.2
-- GPU: RTX 5060 Ti 16GB, CUDA 13.1
-
 ### Instalação
 
 ```bash
@@ -92,7 +86,7 @@ As métricas são salvas em `results/eval_metrics.json`.
 **Melhor checkpoint:** `checkpoints/segresnet_20260313_131412/best_model.pth`
 
 | Epoch | Dice   | IoU    | Sensitivity | Specificity | Precision | HD95  |
-|-------|--------|--------|-------------|-------------|-----------|-------|
+| ----- | ------ | ------ | ----------- | ----------- | --------- | ----- |
 | best  | 0.7536 | 0.6539 | 0.8747      | 0.9935      | 0.7353    | 13.85 |
 
 ### UNet++ — a implementar
