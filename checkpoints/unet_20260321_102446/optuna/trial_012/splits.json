@@ -1,0 +1,28 @@
+{
+  "train": [
+    "VMar",
+    "CFer",
+    "JFul",
+    "AXav",
+    "DSil",
+    "ISou",
+    "JMir",
+    "TJes",
+    "CLis",
+    "FPiq",
+    "MSil",
+    "EGra",
+    "AEdu",
+    "FGas"
+  ],
+  "val": [
+    "AFre",
+    "MPai",
+    "DLag"
+  ],
+  "test": [
+    "DSan",
+    "ACel",
+    "AMar"
+  ]
+}

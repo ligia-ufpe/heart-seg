@@ -1,0 +1,405 @@
+{
+  "best_trial": 13,
+  "best_dice": 0.6193918033099425,
+  "best_params": {
+    "lr": 0.003381731843363335,
+    "batch_size": 4,
+    "context_slices": 3,
+    "tversky_alpha": 0.4374318197125821,
+    "base_filters": 64,
+    "dropout_prob": 0.05927892018720268
+  },
+  "model": "unet",
+  "all_trials": [
+    {
+      "number": 0,
+      "value": 0.5409448051609111,
+      "params": {
+        "lr": 0.005997215402849685,
+        "batch_size": 4,
+        "context_slices": 2,
+        "tversky_alpha": 0.20196818125709695,
+        "base_filters": 16,
+        "dropout_prob": 0.2764044715093243
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 1,
+      "value": 0.5641735050275553,
+      "params": {
+        "lr": 0.00061022183838357,
+        "batch_size": 16,
+        "context_slices": 1,
+        "tversky_alpha": 0.43653101409998535,
+        "base_filters": 32,
+        "dropout_prob": 0.3113872728592585
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 2,
+      "value": 0.5810889788289525,
+      "params": {
+        "lr": 0.0006764745806806902,
+        "batch_size": 8,
+        "context_slices": 3,
+        "tversky_alpha": 0.40393940064372336,
+        "base_filters": 64,
+        "dropout_prob": 0.4885691608857947
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 3,
+      "value": 0.5484468394771298,
+      "params": {
+        "lr": 0.000616471516795941,
+        "batch_size": 8,
+        "context_slices": 2,
+        "tversky_alpha": 0.22995523343840213,
+        "base_filters": 16,
+        "dropout_prob": 0.14471165235711358
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 4,
+      "value": 0.5697793393634896,
+      "params": {
+        "lr": 0.00017599129836142337,
+        "batch_size": 8,
+        "context_slices": 2,
+        "tversky_alpha": 0.3451231863124351,
+        "base_filters": 32,
+        "dropout_prob": 0.15993868628189356
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 5,
+      "value": 0.4714888666818069,
+      "params": {
+        "lr": 0.000230828225855564,
+        "batch_size": 8,
+        "context_slices": 2,
+        "tversky_alpha": 0.2771623925689168,
+        "base_filters": 32,
+        "dropout_prob": 0.2299576360863294
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 6,
+      "value": 0.487049925431354,
+      "params": {
+        "lr": 0.003237314379392421,
+        "batch_size": 4,
+        "context_slices": 2,
+        "tversky_alpha": 0.38924572229060683,
+        "base_filters": 16,
+        "dropout_prob": 0.4293220612354784
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 7,
+      "value": 0.611013275425451,
+      "params": {
+        "lr": 0.0024258708788804707,
+        "batch_size": 4,
+        "context_slices": 3,
+        "tversky_alpha": 0.41509195923354797,
+        "base_filters": 64,
+        "dropout_prob": 0.01024464229113009
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 8,
+      "value": 0.5994703122595023,
+      "params": {
+        "lr": 0.0016670278522006635,
+        "batch_size": 16,
+        "context_slices": 3,
+        "tversky_alpha": 0.3258344959149393,
+        "base_filters": 64,
+        "dropout_prob": 0.11055370518142504
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 9,
+      "value": 0.5850699493840045,
+      "params": {
+        "lr": 0.0019484111638065052,
+        "batch_size": 16,
+        "context_slices": 2,
+        "tversky_alpha": 0.4862359496872171,
+        "base_filters": 32,
+        "dropout_prob": 0.29883604550629683
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 10,
+      "value": 0.6049094000705831,
+      "params": {
+        "lr": 0.00832396110262886,
+        "batch_size": 4,
+        "context_slices": 3,
+        "tversky_alpha": 0.499890088223501,
+        "base_filters": 64,
+        "dropout_prob": 0.0025357775400251057
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 11,
+      "value": 0.609111738842923,
+      "params": {
+        "lr": 0.009402628741291151,
+        "batch_size": 4,
+        "context_slices": 3,
+        "tversky_alpha": 0.4736537731402938,
+        "base_filters": 64,
+        "dropout_prob": 0.001949535736002659
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 12,
+      "value": 0.6112598915338254,
+      "params": {
+        "lr": 0.004236799861620665,
+        "batch_size": 4,
+        "context_slices": 3,
+        "tversky_alpha": 0.44776383572250106,
+        "base_filters": 64,
+        "dropout_prob": 0.008174169594084192
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 13,
+      "value": 0.6193918033099425,
+      "params": {
+        "lr": 0.003381731843363335,
+        "batch_size": 4,
+        "context_slices": 3,
+        "tversky_alpha": 0.4374318197125821,
+        "base_filters": 64,
+        "dropout_prob": 0.05927892018720268
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 14,
+      "value": 0.6036870690200286,
+      "params": {
+        "lr": 0.004277494154430843,
+        "batch_size": 4,
+        "context_slices": 1,
+        "tversky_alpha": 0.4400523596071894,
+        "base_filters": 64,
+        "dropout_prob": 0.08784243009130743
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 15,
+      "value": 0.6082111966763629,
+      "params": {
+        "lr": 0.0011939773915409777,
+        "batch_size": 4,
+        "context_slices": 3,
+        "tversky_alpha": 0.3886223127234309,
+        "base_filters": 64,
+        "dropout_prob": 0.09091100023966564
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 16,
+      "value": 0.607165493525864,
+      "params": {
+        "lr": 0.0042915063630071274,
+        "batch_size": 4,
+        "context_slices": 3,
+        "tversky_alpha": 0.45361032879080665,
+        "base_filters": 64,
+        "dropout_prob": 0.19936899148976225
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 17,
+      "value": 0.6024453067914282,
+      "params": {
+        "lr": 0.0010628047313946645,
+        "batch_size": 4,
+        "context_slices": 3,
+        "tversky_alpha": 0.3611809614274307,
+        "base_filters": 64,
+        "dropout_prob": 0.05781575952278157
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 18,
+      "value": 0.55216144137985,
+      "params": {
+        "lr": 0.005458955242519178,
+        "batch_size": 4,
+        "context_slices": 1,
+        "tversky_alpha": 0.45514853479268164,
+        "base_filters": 64,
+        "dropout_prob": 0.36434215274024406
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 19,
+      "value": 0.3349557669921944,
+      "params": {
+        "lr": 0.00034823659196122345,
+        "batch_size": 16,
+        "context_slices": 3,
+        "tversky_alpha": 0.2883580779383349,
+        "base_filters": 16,
+        "dropout_prob": 0.05324133368593942
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 20,
+      "value": 0.5033879295462897,
+      "params": {
+        "lr": 0.00010502254220311282,
+        "batch_size": 4,
+        "context_slices": 3,
+        "tversky_alpha": 0.37445825773429725,
+        "base_filters": 64,
+        "dropout_prob": 0.1679315375131998
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 21,
+      "value": 0.6135379166652267,
+      "params": {
+        "lr": 0.002399940725758523,
+        "batch_size": 4,
+        "context_slices": 3,
+        "tversky_alpha": 0.41939201912832713,
+        "base_filters": 64,
+        "dropout_prob": 0.03104368635549536
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 22,
+      "value": 0.6193822563717702,
+      "params": {
+        "lr": 0.002789806051606244,
+        "batch_size": 4,
+        "context_slices": 3,
+        "tversky_alpha": 0.42797866660043726,
+        "base_filters": 64,
+        "dropout_prob": 0.05685308982765996
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 23,
+      "value": 0.61879592652052,
+      "params": {
+        "lr": 0.002585926105672125,
+        "batch_size": 4,
+        "context_slices": 3,
+        "tversky_alpha": 0.41589023502532707,
+        "base_filters": 64,
+        "dropout_prob": 0.06658515362753799
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 24,
+      "value": 0.5911746623333896,
+      "params": {
+        "lr": 0.001652193592106758,
+        "batch_size": 4,
+        "context_slices": 3,
+        "tversky_alpha": 0.41552351131626397,
+        "base_filters": 64,
+        "dropout_prob": 0.12129734887362204
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 25,
+      "value": 0.5084337446120889,
+      "params": {
+        "lr": 0.002825288324491932,
+        "batch_size": 4,
+        "context_slices": 1,
+        "tversky_alpha": 0.4716886043087813,
+        "base_filters": 64,
+        "dropout_prob": 0.05769437870722624
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 26,
+      "value": 0.5570977745720027,
+      "params": {
+        "lr": 0.0012325231801980799,
+        "batch_size": 4,
+        "context_slices": 3,
+        "tversky_alpha": 0.3492697823463544,
+        "base_filters": 64,
+        "dropout_prob": 0.2072789572263677
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 27,
+      "value": 0.5752706978150403,
+      "params": {
+        "lr": 0.006320601747248915,
+        "batch_size": 4,
+        "context_slices": 3,
+        "tversky_alpha": 0.3284974302916257,
+        "base_filters": 64,
+        "dropout_prob": 0.07727109481524047
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 28,
+      "value": 0.514098564260863,
+      "params": {
+        "lr": 0.00334873537109801,
+        "batch_size": 8,
+        "context_slices": 3,
+        "tversky_alpha": 0.4304665734891291,
+        "base_filters": 32,
+        "dropout_prob": 0.13859934317364642
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 29,
+      "value": 0.49687739042690765,
+      "params": {
+        "lr": 0.005984645845889497,
+        "batch_size": 16,
+        "context_slices": 1,
+        "tversky_alpha": 0.3964508589070786,
+        "base_filters": 16,
+        "dropout_prob": 0.18407636184521525
+      },
+      "state": "TrialState.PRUNED"
+    }
+  ]
+}
