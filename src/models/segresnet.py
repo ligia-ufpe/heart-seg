@@ -17,7 +17,7 @@ hyperparameters:
 """
 
 from monai.networks.nets import SegResNet
-from monai.networks.layers import UpsampleMode
+from monai.utils.enums import UpsampleMode
 
 NAME = "segresnet"
 
@@ -66,7 +66,6 @@ def optuna_space(trial) -> dict:
         "blocks_up": (1, 1, 1),
         "upsample_mode": trial.suggest_categorical("upsample_mode", [
             UpsampleMode.NONTRAINABLE,
-            UpsampleMode.LINEAR,
             UpsampleMode.DECONV,
         ]),
     }
