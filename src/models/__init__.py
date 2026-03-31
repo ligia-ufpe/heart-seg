@@ -6,9 +6,9 @@ Para adicionar um novo modelo:
   2. Importe e registre aqui
 """
 
-from . import attentionunet, segresnet, unet
+from . import attentionunet, dynunet, segresnet, unet
 
-_REGISTRY = {m.NAME: m for m in [segresnet, unet, attentionunet]}
+_REGISTRY = {m.NAME: m for m in [segresnet, unet, attentionunet, dynunet]}
 
 AVAILABLE = list(_REGISTRY)
 
