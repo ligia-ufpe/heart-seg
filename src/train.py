@@ -315,21 +315,25 @@ def run_optuna(args):
         trial_dir = study_dir / f"trial_{trial.number:03d}"
         trial_dir.mkdir(parents=True, exist_ok=True)
 
-        return train_single_run(
-            data_dir       = args.data_dir,
-            save_dir       = trial_dir,
-            model_name     = args.model,
-            model_config   = model_config,
-            epochs         = args.epochs,
-            batch_size     = batch_size,
-            lr             = lr,
-            patience       = args.patience,
-            context_slices = context_slices,
-            tversky_alpha  = tversky_alpha,
-            workers        = args.workers,
-            seed           = args.seed,
-            trial          = trial,
-        )
+        try:
+            return train_single_run(
+                data_dir       = args.data_dir,
+                save_dir       = trial_dir,
+                model_name     = args.model,
+                model_config   = model_config,
+                epochs         = args.epochs,
+                batch_size     = batch_size,
+                lr             = lr,
+                patience       = args.patience,
+                context_slices = context_slices,
+                tversky_alpha  = tversky_alpha,
+                workers        = args.workers,
+                seed           = args.seed,
+                trial          = trial,
+            )
+        except torch.OutOfMemoryError:
+            torch.cuda.empty_cache()
+            raise optuna.TrialPruned("CUDA OOM — combinacao de hiperparametros muito pesada")
 
     pruner = optuna.pruners.MedianPruner(n_startup_trials=5, n_warmup_steps=10)
     study  = optuna.create_study(
