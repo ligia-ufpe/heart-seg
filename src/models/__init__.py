@@ -7,8 +7,10 @@ Para adicionar um novo modelo:
 """
 
 from . import attentionunet, dynunet, segresnet, unet
+from . import SwinUNETR as swinunetr_module
+from . import UNETR as unetr_module
 
-_REGISTRY = {m.NAME: m for m in [segresnet, unet, attentionunet, dynunet]}
+_REGISTRY = {m.NAME: m for m in [segresnet, unet, attentionunet, dynunet, swinunetr_module, unetr_module]}
 
 AVAILABLE = list(_REGISTRY)
 
