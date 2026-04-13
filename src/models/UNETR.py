@@ -29,7 +29,7 @@ from monai.networks.nets import UNETR
 NAME = "unetr"
 
 DEFAULT_CONFIG = {
-    "img_size":     (256, 256),   # ajuste para o tamanho real das imagens
+    "img_size":     (512, 512),   # tamanho real das imagens do dataset
     "out_channels": 1,
     "feature_size": 16,
     "hidden_size":  768,
