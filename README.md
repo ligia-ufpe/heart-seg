@@ -22,7 +22,3 @@ git clone https://github.com/ligia-ufpe/heart-seg.git
 cd heart-seg
 git checkout ct_base_paper
 ```
-
-## 📄 About
-
-This project is developed at **LigIA / CIn – UFPE** in partnership with **Rede D'Or**.
