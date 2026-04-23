@@ -1,0 +1,167 @@
+{
+  "best_trial": 0,
+  "best_dice": 0.7902598831929072,
+  "best_params": {
+    "lr": 0.000591076353441725,
+    "batch_size": 4,
+    "context_slices": 3,
+    "tversky_alpha": 0.41936090729068115,
+    "init_filters": 16,
+    "dropout_prob": 0.14619755349587749,
+    "num_groups": 8,
+    "upsample_mode": "nontrainable"
+  },
+  "model": "segresnet",
+  "all_trials": [
+    {
+      "number": 0,
+      "value": 0.7902598831929072,
+      "params": {
+        "lr": 0.000591076353441725,
+        "batch_size": 4,
+        "context_slices": 3,
+        "tversky_alpha": 0.41936090729068115,
+        "init_filters": 16,
+        "dropout_prob": 0.14619755349587749,
+        "num_groups": 8,
+        "upsample_mode": "nontrainable"
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 1,
+      "value": 0.013689349562947957,
+      "params": {
+        "lr": 0.008714906200752237,
+        "batch_size": 8,
+        "context_slices": 2,
+        "tversky_alpha": 0.3036616931114187,
+        "init_filters": 32,
+        "dropout_prob": 0.02556450487889611,
+        "num_groups": 16,
+        "upsample_mode": "deconv"
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 2,
+      "value": 0.7165820295301824,
+      "params": {
+        "lr": 0.00011900917198886854,
+        "batch_size": 16,
+        "context_slices": 3,
+        "tversky_alpha": 0.23829218349218248,
+        "init_filters": 16,
+        "dropout_prob": 0.34445470324145105,
+        "num_groups": 16,
+        "upsample_mode": "nontrainable"
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 3,
+      "value": null,
+      "params": {
+        "lr": 0.0034239614833209554,
+        "batch_size": 16,
+        "context_slices": 3,
+        "tversky_alpha": 0.28128328971163424,
+        "init_filters": 64,
+        "dropout_prob": 0.2725165798837274,
+        "num_groups": 8,
+        "upsample_mode": "deconv"
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 4,
+      "value": 0.7530873120069916,
+      "params": {
+        "lr": 0.00015702040491461864,
+        "batch_size": 8,
+        "context_slices": 2,
+        "tversky_alpha": 0.274739524359036,
+        "init_filters": 32,
+        "dropout_prob": 0.3716283842269855,
+        "num_groups": 4,
+        "upsample_mode": "deconv"
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 5,
+      "value": 0.7430660386311947,
+      "params": {
+        "lr": 0.00014942089755724122,
+        "batch_size": 16,
+        "context_slices": 3,
+        "tversky_alpha": 0.42898957146672445,
+        "init_filters": 16,
+        "dropout_prob": 0.3829663680321324,
+        "num_groups": 4,
+        "upsample_mode": "nontrainable"
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 6,
+      "value": 1.1620907406920457e-12,
+      "params": {
+        "lr": 0.009614256999125912,
+        "batch_size": 4,
+        "context_slices": 2,
+        "tversky_alpha": 0.3098725553791337,
+        "init_filters": 16,
+        "dropout_prob": 0.05733144268787144,
+        "num_groups": 4,
+        "upsample_mode": "deconv"
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 7,
+      "value": 0.7750838282464118,
+      "params": {
+        "lr": 0.0018107349915440748,
+        "batch_size": 4,
+        "context_slices": 3,
+        "tversky_alpha": 0.2526029128965152,
+        "init_filters": 32,
+        "dropout_prob": 0.35560057712442183,
+        "num_groups": 8,
+        "upsample_mode": "nontrainable"
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 8,
+      "value": null,
+      "params": {
+        "lr": 0.00011977283449734792,
+        "batch_size": 16,
+        "context_slices": 1,
+        "tversky_alpha": 0.4893036632627636,
+        "init_filters": 64,
+        "dropout_prob": 0.3419793501096607,
+        "num_groups": 8,
+        "upsample_mode": "deconv"
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 9,
+      "value": 0.7739534496691386,
+      "params": {
+        "lr": 0.0007926119528936324,
+        "batch_size": 4,
+        "context_slices": 3,
+        "tversky_alpha": 0.2715415256966871,
+        "init_filters": 32,
+        "dropout_prob": 0.2342770480334157,
+        "num_groups": 16,
+        "upsample_mode": "nontrainable"
+      },
+      "state": "TrialState.COMPLETE"
+    }
+  ]
+}
