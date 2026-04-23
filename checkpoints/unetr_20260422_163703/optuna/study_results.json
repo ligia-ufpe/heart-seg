@@ -1,0 +1,178 @@
+{
+  "best_trial": 7,
+  "best_dice": 0.6211025062605693,
+  "best_params": {
+    "lr": 0.00018113486804985861,
+    "batch_size": 4,
+    "context_slices": 2,
+    "tversky_alpha": 0.443302415641332,
+    "unetr_hidden_size": 768,
+    "unetr_feature_size": 16,
+    "unetr_dropout_rate": 0.21272149801675355,
+    "unetr_res_block": false,
+    "unetr_proj_type": "perceptron"
+  },
+  "model": "unetr",
+  "all_trials": [
+    {
+      "number": 0,
+      "value": 0.11278195504249049,
+      "params": {
+        "lr": 0.005313997971296891,
+        "batch_size": 4,
+        "context_slices": 1,
+        "tversky_alpha": 0.20922068782275535,
+        "unetr_hidden_size": 384,
+        "unetr_feature_size": 32,
+        "unetr_dropout_rate": 0.3706723890556445,
+        "unetr_res_block": true,
+        "unetr_proj_type": "perceptron"
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 1,
+      "value": null,
+      "params": {
+        "lr": 0.005136324440416289,
+        "batch_size": 16,
+        "context_slices": 3,
+        "tversky_alpha": 0.4558401352181724,
+        "unetr_hidden_size": 384,
+        "unetr_feature_size": 32,
+        "unetr_dropout_rate": 0.2974715386096002,
+        "unetr_res_block": true,
+        "unetr_proj_type": "conv"
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 2,
+      "value": null,
+      "params": {
+        "lr": 0.0037284667219343952,
+        "batch_size": 16,
+        "context_slices": 2,
+        "tversky_alpha": 0.3260429115358144,
+        "unetr_hidden_size": 384,
+        "unetr_feature_size": 32,
+        "unetr_dropout_rate": 0.2210722567388772,
+        "unetr_res_block": true,
+        "unetr_proj_type": "conv"
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 3,
+      "value": 0.41755899400347685,
+      "params": {
+        "lr": 0.0019080865132284734,
+        "batch_size": 8,
+        "context_slices": 2,
+        "tversky_alpha": 0.40621183988356807,
+        "unetr_hidden_size": 384,
+        "unetr_feature_size": 32,
+        "unetr_dropout_rate": 0.09042990616228042,
+        "unetr_res_block": false,
+        "unetr_proj_type": "perceptron"
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 4,
+      "value": 0.11278195504249049,
+      "params": {
+        "lr": 0.0029391536336213896,
+        "batch_size": 8,
+        "context_slices": 3,
+        "tversky_alpha": 0.4213461740520211,
+        "unetr_hidden_size": 384,
+        "unetr_feature_size": 32,
+        "unetr_dropout_rate": 0.020829790784990365,
+        "unetr_res_block": false,
+        "unetr_proj_type": "conv"
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 5,
+      "value": 0.5216869486493003,
+      "params": {
+        "lr": 0.0007393655199163993,
+        "batch_size": 8,
+        "context_slices": 3,
+        "tversky_alpha": 0.3920926335670064,
+        "unetr_hidden_size": 384,
+        "unetr_feature_size": 32,
+        "unetr_dropout_rate": 0.026016895284547648,
+        "unetr_res_block": false,
+        "unetr_proj_type": "perceptron"
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 6,
+      "value": null,
+      "params": {
+        "lr": 0.00012947048611838566,
+        "batch_size": 8,
+        "context_slices": 1,
+        "tversky_alpha": 0.24468518213518473,
+        "unetr_hidden_size": 768,
+        "unetr_feature_size": 32,
+        "unetr_dropout_rate": 0.390636791183362,
+        "unetr_res_block": false,
+        "unetr_proj_type": "perceptron"
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 7,
+      "value": 0.6211025062605693,
+      "params": {
+        "lr": 0.00018113486804985861,
+        "batch_size": 4,
+        "context_slices": 2,
+        "tversky_alpha": 0.443302415641332,
+        "unetr_hidden_size": 768,
+        "unetr_feature_size": 16,
+        "unetr_dropout_rate": 0.21272149801675355,
+        "unetr_res_block": false,
+        "unetr_proj_type": "perceptron"
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 8,
+      "value": 0.11278195504249049,
+      "params": {
+        "lr": 0.005781955491180032,
+        "batch_size": 8,
+        "context_slices": 3,
+        "tversky_alpha": 0.3963599653274033,
+        "unetr_hidden_size": 384,
+        "unetr_feature_size": 16,
+        "unetr_dropout_rate": 0.45527899782419884,
+        "unetr_res_block": false,
+        "unetr_proj_type": "conv"
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 9,
+      "value": null,
+      "params": {
+        "lr": 0.00022878749231500866,
+        "batch_size": 16,
+        "context_slices": 3,
+        "tversky_alpha": 0.34804780352128584,
+        "unetr_hidden_size": 768,
+        "unetr_feature_size": 16,
+        "unetr_dropout_rate": 0.4836802645024534,
+        "unetr_res_block": false,
+        "unetr_proj_type": "perceptron"
+      },
+      "state": "TrialState.PRUNED"
+    }
+  ]
+}

@@ -1,8 +1,14 @@
 """
 Metricas de avaliacao para segmentacao binaria.
 
-Para o paper reportamos: Dice, IoU (Jaccard), Sensitivity (Recall),
-Specificity, Precision e HD95 (Hausdorff 95-th percentile).
+Dice, IoU, Sensitivity, Specificity e Precision sao agregados
+globalmente (voxel-wise) em vez de media por slice, pois a media
+por slice e inflada pelas slices vazias (pred=0 e target=0 → 1.0)
+e torna as metricas incomparaveis com a literatura (ver Rodrigues
+et al. 2016, que reporta Dice=97.7% voxel-wise em 10-fold CV).
+
+HD95 permanece por slice, ignorando slices vazias (nao tem distancia
+definida).
 """
 
 from typing import Dict
@@ -10,45 +16,6 @@ from typing import Dict
 import numpy as np
 import torch
 from scipy.ndimage import distance_transform_edt
-
-
-def _to_numpy_binary(tensor: torch.Tensor, threshold: float = 0.5) -> np.ndarray:
-    """Converte logit/prob tensor para mascara binaria numpy."""
-    if tensor.requires_grad:
-        tensor = tensor.detach()
-    arr = tensor.cpu().numpy()
-    return (arr > threshold).astype(np.uint8)
-
-
-def dice_score(pred: np.ndarray, target: np.ndarray, eps: float = 1e-6) -> float:
-    inter = (pred * target).sum()
-    return (2 * inter + eps) / (pred.sum() + target.sum() + eps)
-
-
-def iou_score(pred: np.ndarray, target: np.ndarray, eps: float = 1e-6) -> float:
-    inter = (pred * target).sum()
-    union = pred.sum() + target.sum() - inter
-    return (inter + eps) / (union + eps)
-
-
-def sensitivity(pred: np.ndarray, target: np.ndarray, eps: float = 1e-6) -> float:
-    """True positive rate / recall."""
-    tp = (pred * target).sum()
-    fn = ((1 - pred) * target).sum()
-    return (tp + eps) / (tp + fn + eps)
-
-
-def specificity(pred: np.ndarray, target: np.ndarray, eps: float = 1e-6) -> float:
-    """True negative rate."""
-    tn = ((1 - pred) * (1 - target)).sum()
-    fp = (pred * (1 - target)).sum()
-    return (tn + eps) / (tn + fp + eps)
-
-
-def precision(pred: np.ndarray, target: np.ndarray, eps: float = 1e-6) -> float:
-    tp = (pred * target).sum()
-    fp = (pred * (1 - target)).sum()
-    return (tp + eps) / (tp + fp + eps)
 
 
 def hausdorff95(pred: np.ndarray, target: np.ndarray) -> float:
@@ -59,7 +26,6 @@ def hausdorff95(pred: np.ndarray, target: np.ndarray) -> float:
     if pred.sum() == 0 or target.sum() == 0:
         return float("nan")
 
-    # distancia de cada pixel ate a borda mais proxima da outra classe
     dist_pred   = distance_transform_edt(1 - pred)
     dist_target = distance_transform_edt(1 - target)
 
@@ -75,26 +41,46 @@ def compute_all_metrics(
     threshold: float = 0.5,
 ) -> Dict[str, float]:
     """
-    Calcula todas as metricas a partir de logits e targets (batched).
+    Calcula metricas a partir de logits e targets (batched).
+
+    Dice/IoU/Sens/Spec/Prec: agregacao global (TP/FP/FN/TN somados
+    sobre todos os pixels de todas as slices, dividido uma vez).
+    HD95: media por slice, ignorando slices vazias.
 
     Args:
-        logits:  (B, 1, H, W) tensor de saida do modelo (raw ou prob)
-        targets: (B, 1, H, W) tensor de mascaras binarias
-    Returns:
-        dict com dice, iou, sensitivity, specificity, precision, hd95
+        logits:  (N, 1, H, W) tensor de saida do modelo
+        targets: (N, 1, H, W) tensor de mascaras binarias
     """
     probs  = torch.sigmoid(logits)
-    pred_b = _to_numpy_binary(probs.squeeze(1), threshold)   # (B, H, W)
-    tgt_b  = targets.squeeze(1).cpu().numpy().astype(np.uint8)
+    pred_b = (probs > threshold).cpu().numpy().astype(np.uint8)   # (N, 1, H, W)
+    tgt_b  = targets.cpu().numpy().astype(np.uint8)               # (N, 1, H, W)
 
-    metrics: Dict[str, list] = {k: [] for k in ["dice", "iou", "sensitivity", "specificity", "precision", "hd95"]}
+    pf = pred_b.reshape(-1)
+    tf = tgt_b.reshape(-1)
 
-    for p, t in zip(pred_b, tgt_b):
-        metrics["dice"].append(dice_score(p, t))
-        metrics["iou"].append(iou_score(p, t))
-        metrics["sensitivity"].append(sensitivity(p, t))
-        metrics["specificity"].append(specificity(p, t))
-        metrics["precision"].append(precision(p, t))
-        metrics["hd95"].append(hausdorff95(p, t))
+    tp = int(np.sum((pf == 1) & (tf == 1)))
+    fp = int(np.sum((pf == 1) & (tf == 0)))
+    fn = int(np.sum((pf == 0) & (tf == 1)))
+    tn = int(np.sum((pf == 0) & (tf == 0)))
 
-    return {k: float(np.nanmean(v)) for k, v in metrics.items()}
+    eps = 1e-6
+    dice = (2 * tp + eps) / (2 * tp + fp + fn + eps)
+    iou  = (tp + eps) / (tp + fp + fn + eps)
+    sens = (tp + eps) / (tp + fn + eps)
+    spec = (tn + eps) / (tn + fp + eps)
+    prec = (tp + eps) / (tp + fp + eps)
+
+    hd95_vals = []
+    for p, t in zip(pred_b[:, 0], tgt_b[:, 0]):
+        if p.sum() > 0 and t.sum() > 0:
+            hd95_vals.append(hausdorff95(p, t))
+    hd95 = float(np.mean(hd95_vals)) if hd95_vals else float("nan")
+
+    return {
+        "dice":        float(dice),
+        "iou":         float(iou),
+        "sensitivity": float(sens),
+        "specificity": float(spec),
+        "precision":   float(prec),
+        "hd95":        hd95,
+    }

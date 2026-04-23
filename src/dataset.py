@@ -44,6 +44,44 @@ def get_patient_splits(
     return train, val, test
 
 
+def get_patient_folds(
+    root_dir: str,
+    k: int = 10,
+    seed: int = 42,
+) -> List[Tuple[List[str], List[str], List[str]]]:
+    """K-fold ao nivel de paciente.
+
+    Cada fold retorna (train, val, test). O grupo i e o test da fold i,
+    o grupo (i+1) mod k e a val, e os demais k-2 grupos compoem o train.
+    Isso equivale ao protocolo 10-fold CV do paper Rodrigues et al. 2016.
+
+    Args:
+        root_dir: raiz do projeto (contem data/fat_images/).
+        k:        numero de folds.
+        seed:     semente para shuffle.
+    """
+    fat_dir = Path(root_dir) / "data" / "fat_images"
+    patients = sorted([d for d in os.listdir(fat_dir) if (fat_dir / d).is_dir()])
+
+    rng = random.Random(seed)
+    shuffled = patients.copy()
+    rng.shuffle(shuffled)
+
+    if k < 2 or k > len(shuffled):
+        raise ValueError(f"k={k} invalido para {len(shuffled)} pacientes")
+
+    # np.array_split — divide em k grupos aproximadamente iguais
+    groups = [list(g) for g in np.array_split(shuffled, k)]
+
+    folds = []
+    for i in range(k):
+        test = groups[i]
+        val  = groups[(i + 1) % k]
+        train = [p for j, g in enumerate(groups) if j != i and j != (i + 1) % k for p in g]
+        folds.append((train, val, test))
+    return folds
+
+
 # ─── Dataset ───────────────────────────────────────────────────────────────
 
 class EpicardialDataset(Dataset):
